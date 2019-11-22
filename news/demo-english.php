@@ -1,76 +1,87 @@
 <?PHP
 
 if(isset($_POST['submit'])) {
-  //**********************Creating data for Salesforce
-    $oid = "00Di0000000cOee";
-    //$post_data['retURL'] = 'https://www.clmforex.com/demo-account-thank-you';
 
-    //create array of data to be posted
-    $post_data['oid'] = $oid;
-    $post_data['first_name'] = trim($_POST['lead-first-name']);
-    $post_data['last_name'] = trim($_POST['lead-last-name']);
-    $post_data['country'] = trim($_POST['social']);
-    //$post_data['phone'] = trim('0000-0000');
+//**********************Creating data for Salesforce
+$oid = "00Di0000000cOee";
+//$post_data['retURL'] = 'https://www.clmforex.com/demo-account-thank-you';
 
-    $post_data['email'] = trim($_POST['lead-email']);
-    //$post_data['pwd'] = trim($_POST['pwd']);
-    //$post_data['amount'] = trim($_POST['amount']);
-    //$post_data['amount'] = trim(81);
+//create array of data to be posted
+$post_data['oid'] = $oid;
+$post_data['first_name'] = trim($_POST['lead-first-name']);
+$post_data['last_name'] = trim($_POST['lead-last-name']);
+$post_data['country'] = trim($_POST['social']);
+//$post_data['phone'] = trim('0000-0000');
 
-    //$post_data['leverage'] = trim($_POST['leverage']);
-    //$post_data['group'] = trim($_POST['group']);
-    $post_data['Preferred_Language__c'] = trim($_POST['Preferred_Language__c']);
-    //$post_data['retURL'] = 'https://www.clmforex.com/demo-account-thank-you';
-    //$post_data['00N90000009SXUs'] = trim($_POST['abn_acn']);   // CUSTOM FIELDS IN LEAD OBJECT
-     
-    //traverse array and prepare data for posting (key1=value1)
-    foreach ( $post_data as $key => $value) {
-    $post_items[] = $key . '=' . $value;
-    }
+$post_data['email'] = trim($_POST['lead-email']);
+//$post_data['pwd'] = trim($_POST['pwd']);
+//$post_data['amount'] = trim($_POST['amount']);
+//$post_data['amount'] = trim(81);
 
-    //create the final string to be posted using implode()
-    $post_string = implode ('&', $post_items);
+//$post_data['leverage'] = trim($_POST['leverage']);
+//$post_data['group'] = trim($_POST['group']);
+$post_data['Preferred_Language__c'] = trim($_POST['Preferred_Language__c']);
+//$post_data['retURL'] = 'https://www.clmforex.com/demo-account-thank-you';
+//$post_data['00N90000009SXUs'] = trim($_POST['abn_acn']);   // CUSTOM FIELDS IN LEAD OBJECT
+ 
+//traverse array and prepare data for posting (key1=value1)
+foreach ( $post_data as $key => $value) {
+$post_items[] = $key . '=' . $value;
+}
 
-    //print_r($post_data);
-    //create cURL connection
-    $curl_connection = curl_init('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8');
-    //curl_setopt($curl_connection, CURLOPT_URL, $url);
+//create the final string to be posted using implode()
+$post_string = implode ('&', $post_items);
 
-
-
-    //set options
-    curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
-    curl_setopt($curl_connection, CURLOPT_USERAGENT,
-    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
-    curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl_connection, CURLOPT_FOLLOWLOCATION, 1);
-     
-    //set data to be posted
-    curl_setopt($curl_connection, CURLOPT_POSTFIELDS, $post_string);
-    //perform our request
-    $result = curl_exec($curl_connection);
-    //show information regarding the request
-    //print_r(curl_getinfo($curl_connection));
-    //echo curl_errno($curl_connection) . '-' . curl_error($curl_connection);
-    //close the connection
-    curl_close($curl_connection);
-     
-    // HERE YOU CAN ADD ANY BUSINESS REQUIREMENT,
+//print_r($post_data);
+//create cURL connection
+$curl_connection = curl_init('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8');
+//curl_setopt($curl_connection, CURLOPT_URL, $url);
 
 
 
+//set options
+curl_setopt($curl_connection, CURLOPT_CONNECTTIMEOUT, 30);
+curl_setopt($curl_connection, CURLOPT_USERAGENT,
+"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)");
+curl_setopt($curl_connection, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($curl_connection, CURLOPT_FOLLOWLOCATION, 1);
+ 
+//set data to be posted
+curl_setopt($curl_connection, CURLOPT_POSTFIELDS, $post_string);
+//perform our request
+$result = curl_exec($curl_connection);
+//show information regarding the request
+//print_r(curl_getinfo($curl_connection));
+//echo curl_errno($curl_connection) . '-' . curl_error($curl_connection);
+//close the connection
+curl_close($curl_connection);
+ 
+// HERE YOU CAN ADD ANY BUSINESS REQUIREMENT,
 
 
 
 //********************** End data of SF  
 
-  $url = 'https://api.pro.we.01.currentdesk.com:444/registration/lead';
+
+ 
+$url = 'https://api.pro.we.01.currentdesk.com:444/registration/lead';
+
+
+
+// $social = array(
+//   'GT' => 87,
+//   'MX' => 135
+// );
+
+// if(true) {
+//    $social['GT'] => 87;
+// }
 
 
 
 
-  $data = array(
+$data = array(
     'lead-email' => $_POST['lead-email'], 
     //'lead-residence-country-id' => 1,
 
@@ -80,6 +91,51 @@ if(isset($_POST['submit'])) {
     //'lead-residence-country-id' => $_POST["social"],
     'lead-residence-country-id' => $_POST['NewValueCountry'],
     //'lead-residence-country-id' => '87',
+
+
+
+
+    // 'lead-residence-country-id' => array 
+    //     (
+    //         // "GT" => "87",
+    //         // 'lead-residence-country-id' => '87',
+    //         //'lead-residence-country-id' => ((true) ? 'GT' : '87'), 
+    //         //"city" => "city",           
+    //         if(isset($_POST["social"]) && $_POST["social"] = "87") echo "selected"; ;
+    //     ), 
+
+//         if ($_POST['social'] == 'GT') {
+//           // TODO sortorder 'Newest' was selected.
+//           'lead-residence-country-id' => '87',
+//         }
+
+
+// if ($_POST['demo'] === 'Newest') {
+// // Run this
+// }
+// elseif ( $_POST['demo'] === 'Best Sellers' ) {
+// // Run this
+// }
+
+
+
+    // if ($_POST['social'] == 'GT') {
+    //     => $_POST['87'],
+    // }
+
+//  if 'lead-residence-country-id' => ($_POST['social'] == 'GT') array(
+//         {
+//         'lead-residence-country-id' => $_POST['87'],
+//         } else {
+//         echo 'not found none';
+//         }
+// )
+     // if (isset($_POST['lead-residence-country-id']))
+     //  {
+     //      $category = $_POST['social'];
+     //  }
+
+
 
     'lead-language-id' => 1,
     'account-trading-platform-id' => 1,
@@ -99,30 +155,30 @@ if(isset($_POST['submit'])) {
 
     );
 
-    $postdata = json_encode($data);
+$postdata = json_encode($data);
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        'Authorization: Basic YXBpQGNsbWZvcmV4LmNvbTp5NTRhamhhc2prYWE6MTQ0',
-        'Content-Type: application/json', 
-        'Accept: application/json'
-        //'Content-Length: ' . strlen($data)
-    ));
-    // $result = curl_exec($ch);
-    // curl_close($ch);
-    // print_r ($result);
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Authorization: Basic YXBpQGNsbWZvcmV4LmNvbTp5NTRhamhhc2prYWE6MTQ0',
+    'Content-Type: application/json', 
+    'Accept: application/json'
+    //'Content-Length: ' . strlen($data)
+));
+// $result = curl_exec($ch);
+// curl_close($ch);
+// print_r ($result);
 
-    $result = curl_exec($ch);
+$result = curl_exec($ch);
 
-    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-    curl_close($ch);
+curl_close($ch);
 
 
 
@@ -133,9 +189,13 @@ if(isset($_POST['submit'])) {
 
 
 
+if ($statusCode == 200) {
+      // successful response - continue as planned.        
+        //$thk = 'You have successfully signed up for a 30-day demo.<br/>ou will receive an email with the download links and instructions to access your new account. <br/>We thank you for choosing CLM, and hope to see you trading live soon!';
 
-    if ($statusCode == 200) {
-     
+        //$message = '<script type="text/javascript">window.location = "https://www.clmforex.com/demo-account-thank-you"</script>';
+        //return $message;
+        //$yourURL="https://www.clmforex.com/demo-account-thank-you";
         $yourURL="/demo-account-thank-you/";
         echo ("<script>location.href='$yourURL'</script>");
         //header('Location: https://www.clmforex.com/demo-account-thank-you');
@@ -149,9 +209,9 @@ if(isset($_POST['submit'])) {
 
     }
 
-  } 
 
-  
+}
+
 ?>
 
 <html>
@@ -1328,9 +1388,9 @@ input[type="checkbox"]:disabled+span.tyc { border-color: red; border-style: soli
 
                                   }
                                 ?>
-                                <!-- <input style="color: #fff; font-family: avenir-regular; font-weight: 500;  font-size: 17px;  border-radius: 8px !important" type="submit" name="submitL" class="btn btn-success btn-send" onclick="passvalues();" formaction="/live-account-application" value="LIVE">   --> 
 
-                                <input style="color: #fff; font-family: avenir-regular; font-weight: 500;  font-size: 17px;  border-radius: 8px !important" type="submit" name="submitL" class="btn btn-success btn-send" onclick="passvalues();" value="LIVE"> 
+                                <!-- <input style="color: #fff; font-family: avenir-regular; font-weight: 500;  font-size: 17px;  border-radius: 8px !important" type="submit" name="submit" class="btn btn-success btn-send" onclick="passvalues();" formaction="/live-account-application" value="LIVE">  -->  
+                                <input style="color: #fff; font-family: avenir-regular; font-weight: 500;  font-size: 17px;  border-radius: 8px !important" type="submit" name="submitL" class="btn btn-success btn-send" onclick="passvalues();" value="LIVE">
 
                                 <!-- <input type="submit" value="Click" onclick="passvalues();" formaction="https://clmmultisites.wpengine.comlive"/>  -->
 
